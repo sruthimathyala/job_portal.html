@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JobSphere - Job Portal</title>
+<style>
+/* General Reset */
+* { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+body { background: linear-gradient(120deg,#89f7fe,#66a6ff); min-height:100vh; }
+
+/* Header */
+header{
+  display:flex; justify-content:space-between; align-items:center;
+  padding:20px 60px;
+  background:linear-gradient(90deg,#ff512f,#dd2476);
+  color:white;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+  position:fixed; top:0; width:100%; z-index:1000;
+}
+.logo { display:flex; align-items:center; gap:10px; }
+.logo-icon{ background:white; color:#ff512f; padding:10px; border-radius:50%; font-weight:bold; }
+nav a { color:white; text-decoration:none; margin-left:25px; font-weight:bold; cursor:pointer; }
+nav a:hover { color:yellow; }
+
+/* Sections */
+section{ padding:120px 20px 80px 20px; text-align:center; display:none; }
+.active{ display:block; }
+
+/* Hero/Home */
+.hero{ background:linear-gradient(120deg,#36d1dc,#5b86e5); color:white; }
+.hero h2{ font-size:42px; margin-bottom:10px; }
+.hero button{ padding:12px 20px; border:none; border-radius:10px; background:white; color:#36d1dc; font-weight:bold; cursor:pointer; transition:0.3s; }
+.hero button:hover{ background:#ffd700; }
+
+/* Jobs Section */
+.jobs{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; padding:50px; }
+.job-card{ padding:25px; border-radius:15px; color:white; box-shadow:0 8px 20px rgba(0,0,0,0.2); transition:0.4s; }
+.job-card:hover{ transform:scale(1.05); cursor:pointer; }
+.card1{ background:linear-gradient(45deg,#ff9a9e,#fad0c4); }
+.card2{ background:linear-gradient(45deg,#a18cd1,#fbc2eb); }
+.card3{ background:linear-gradient(45deg,#f6d365,#fda085); }
+.card4{ background:linear-gradient(45deg,#84fab0,#8fd3f4); }
+.job-card button{ margin-top:10px; padding:10px 15px; border:none; border-radius:6px; background:white; color:black; font-weight:bold; cursor:pointer; }
+.job-card button:hover{ background:black; color:white; }
+
+/* Companies Section */
+.companies{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:30px; padding:50px; }
+
+/* Contact Section */
+#contactForm{ background:white; color:black; padding:30px; border-radius:15px; max-width:500px; margin:0 auto; text-align:left; }
+#contactForm input, #contactForm textarea{ width:100%; padding:12px; margin-bottom:10px; border-radius:10px; border:1px solid #ccc; outline:none; }
+#contactForm button{ padding:12px 20px; border:none; background:#ff512f; color:white; border-radius:10px; cursor:pointer; }
+#contactForm button:hover{ background:#dd2476; }
+
+/* Footer */
+footer{ text-align:center; padding:20px; background:linear-gradient(90deg,#ff512f,#dd2476); color:white; margin-top:50px; }
+</style>
+</head>
+<body>
+
+<header>
+<div class="logo"><div class="logo-icon">JS</div><h1>JobSphere</h1></div>
+<nav>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('jobs')">Jobs</a>
+<a onclick="showPage('companies')">Companies</a>
+<a onclick="showPage('contact')">Contact</a>
+</nav>
+</header>
+
+<!-- Home Section -->
+<section id="home" class="active hero">
+<h2>Welcome to JobSphere</h2>
+<p>Find your dream job today!</p>
+<button onclick="showPage('jobs')">Browse Jobs</button>
+</section>
+
+<!-- Jobs Section -->
+<section id="jobs">
+<h2>Explore Jobs</h2>
+<p>Thousands of opportunities waiting for you</p>
+<input type="text" id="searchBar" placeholder="Search jobs..." onkeyup="searchJobs()">
+<div class="jobs" id="jobList">
+<div class="job-card card1">
+<h3>Frontend Developer</h3>
+<p>Company: TechNova</p>
+<p>Location: Bangalore</p>
+<button onclick="applyJob()">Apply</button>
+</div>
+<div class="job-card card2">
+<h3>Backend Developer</h3>
+<p>Company: CodeSphere</p>
+<p>Location: Hyderabad</p>
+<button onclick="applyJob()">Apply</button>
+</div>
+<div class="job-card card3">
+<h3>UI/UX Designer</h3>
+<p>Company: PixelCraft</p>
+<p>Location: Chennai</p>
+<button onclick="applyJob()">Apply</button>
+</div>
+<div class="job-card card4">
+<h3>Data Analyst</h3>
+<p>Company: DataWorks</p>
+<p>Location: Pune</p>
+<button onclick="applyJob()">Apply</button>
+</div>
+</div>
+</section>
+
+<!-- Companies Section -->
+<section id="companies">
+<h2>Top Companies</h2>
+<p>Explore companies hiring right now</p>
+<div class="companies">
+<div class="job-card card1">
+<h3>TechNova</h3>
+<p>Industry: Software</p>
+<p>Location: Bangalore</p>
+<button onclick="showPage('jobs')">View Jobs</button>
+</div>
+<div class="job-card card2">
+<h3>CodeSphere</h3>
+<p>Industry: IT Services</p>
+<p>Location: Hyderabad</p>
+<button onclick="showPage('jobs')">View Jobs</button>
+</div>
+<div class="job-card card3">
+<h3>PixelCraft</h3>
+<p>Industry: Design</p>
+<p>Location: Chennai</p>
+<button onclick="showPage('jobs')">View Jobs</button>
+</div>
+<div class="job-card card4">
+<h3>DataWorks</h3>
+<p>Industry: Analytics</p>
+<p>Location: Pune</p>
+<button onclick="showPage('jobs')">View Jobs</button>
+</div>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+<h2>Contact Us</h2>
+<p>We would love to hear from you!</p>
+<form id="contactForm">
+<input type="text" placeholder="Your Name" required>
+<input type="email" placeholder="Your Email" required>
+<textarea placeholder="Message" required></textarea>
+<button type="submit">Send Message</button>
+</form>
+</section>
+
+<footer>
+<p>© 2026 JobSphere | Creative Job Portal</p>
+</footer>
+
+<script>
+function showPage(pageId){
+  const sections = ['home','jobs','companies','contact'];
+  sections.forEach(id => {
+    document.getElementById(id).classList.remove('active');
+  });
+  document.getElementById(pageId).classList.add('active');
+}
+
+function applyJob(){ alert("Your application has been submitted!"); }
+
+function searchJobs(){
+let input = document.getElementById("searchBar").value.toLowerCase();
+let jobs = document.getElementsByClassName("job-card");
+for(let i=0;i<jobs.length;i++){
+let title = jobs[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+jobs[i].style.display = title.includes(input) ? "block" : "none";
+}
+}
+</script>
+
+</body>
+</html>
